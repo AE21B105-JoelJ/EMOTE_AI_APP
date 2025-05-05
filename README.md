@@ -1,4 +1,4 @@
-# EMOTE_AI_APP# Emote AI - Suicide Detection AI App
+# Emote AI - Suicide Detection AI App
 This AI-powered tool analyzes text messages for signs of concerning mental health patterns. It's designed as a supportive resource, not a medical diagnostic tool.
 
 ## Details about the App

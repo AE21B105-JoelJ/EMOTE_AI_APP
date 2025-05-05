@@ -1,0 +1,115 @@
+services:
+  postgres_db:
+    build: # Build the image from the dockerfile in the directory
+      context: ./DB_
+      dockerfile: Dockerfile
+    container_name: pg_db
+    env_file:
+      - env_db.env
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "db"
+    volumes:
+      - ./logs:/var/log
+      - ./Data_:/var/Data_
+    networks:
+      - app-network
+
+  backend:
+    build: # Build the image from the dockerfile in the directory
+      context: ./BACKEND_
+      dockerfile: Dockerfile
+    container_name: backend
+    env_file:
+      - env_backend.env
+    ports:
+      - "4000"
+      - "18001:18001"
+    depends_on:
+      postgres_db:
+        condition : service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "backend"
+    volumes:
+      - ./logs:/var/log
+      - ./Data_:/var/Data_
+    networks:
+      - app-network
+
+  frontend:
+    build: # Build the image from the dockerfile in the directory
+      context: ./FRONTEND_
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8000:8000"
+      - "18002:18002"
+    depends_on:
+      - backend
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "frontend"
+    volumes:
+      - ./logs:/var/log
+      - ./Data_:/var/Data_
+    networks:
+      - app-network
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"   # Exposing Prometheus UI on port 9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - app-network
+
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node_exporter
+    ports:
+      - "9100:9100"   # Default port for node exporter expose
+    networks:
+      - app-network
+
+  grafana_ai:
+    image: grafana/grafana
+    container_name: grafana_ai
+    ports:
+      - "3000:3000"  # Grafana UI port
+    depends_on:
+      - prometheus
+    networks:
+      - app-network
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  grafana-storage : {}
+networks:
+  app-network:
+    driver: bridge

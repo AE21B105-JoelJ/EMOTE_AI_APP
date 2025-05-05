@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindGuard AI - Logs</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+          <h1 class="logo-text">EMOTE AI</h1>
+        </div>
+        
+        <nav class="sidebar-nav">
+          <div class="nav-section-title">Main</div>
+          
+          <div class="nav-item">
+            <a href="/main" class="nav-link">
+              <i class="ri-dashboard-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </div>
+          
+          <div class="nav-item">
+            <a href="/feedback" class="nav-link">
+              <i class="ri-history-line"></i>
+              <span>Feedback</span>
+            </a>
+          </div>
+          
+          <div class="nav-item">
+            <a href="/diagnostic" class="nav-link">
+              <i class="ri-heart-pulse-line"></i>
+              <span>Submit Data</span>
+            </a>
+          </div>
+          
+          <div class="nav-section-title">Developer Options</div>
+          
+          <div class="nav-item">
+            <a href="/visualizations" class="nav-link">
+              <i class="ri-bar-chart-line"></i>
+              <span>Visualizations</span>
+            </a>
+          </div>
+  
+          <div class="nav-item active">
+            <a href="/logs" class="nav-link">
+              <i class="ri-file-list-2-line"></i>
+              <span>View Logs</span>
+            </a>
+          </div>
+          
+          <div class="nav-section-title">Support</div>
+          
+          <div class="nav-item">
+            <a href="/contact" class="nav-link">
+              <i class="ri-message-3-line"></i>
+              <span>Contact</span>
+            </a>
+          </div>
+        </nav>
+        
+        <div class="crisis-help">
+          <h4>Need immediate help?</h4>
+          <p>If you're in crisis, please call the helpline</p>
+          <a href="tel:104" class="crisis-btn">
+            <i class="ri-phone-line"></i> 104 - Crisis Helpline
+          </a>
+        </div>
+      </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="top-header">
+        <h2>Logs</h2>
+      </header>
+
+      <main class="dashboard">
+        <div class="card visualization-card">
+          <h3>System Logs</h3>
+          <p>Click a button below to view logs.</p>
+
+          <div class="buttons-grid">
+            <button class="viz-btn" onclick="fetchLog('backend')">View Backend Logs</button>
+            <button class="viz-btn" onclick="fetchLog('frontend')">View Frontend Logs</button>
+            <button class="viz-btn" onclick="fetchLog('db')">View Database Logs</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Popup Modal for Logs -->
+  <div id="log-modal" class="modal" style="display: none;">
+    <div class="modal-content log-modal-content">
+      <span class="close-btn" onclick="closeLogModal()">&times;</span>
+      <pre id="modal-log-text"></pre>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

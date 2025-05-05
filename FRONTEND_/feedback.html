@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emote AI - Feedback</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+          <h1 class="logo-text">EMOTE AI</h1>
+        </div>
+        
+        <nav class="sidebar-nav">
+          <div class="nav-section-title">Main</div>
+          
+          <div class="nav-item">
+            <a href="/main" class="nav-link">
+              <i class="ri-dashboard-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </div>
+          
+          <div class="nav-item active">
+            <a href="/feedback" class="nav-link">
+              <i class="ri-history-line"></i>
+              <span>Feedback</span>
+            </a>
+          </div>
+          
+          <div class="nav-item">
+            <a href="/diagnostic" class="nav-link">
+              <i class="ri-heart-pulse-line"></i>
+              <span>Submit Data</span>
+            </a>
+          </div>
+          
+          <div class="nav-section-title">Developer Options</div>
+          
+          <div class="nav-item">
+            <a href="/visualizations" class="nav-link">
+              <i class="ri-bar-chart-line"></i>
+              <span>Visualizations</span>
+            </a>
+          </div>
+  
+          <div class="nav-item">
+            <a href="/logs" class="nav-link">
+              <i class="ri-file-list-2-line"></i>
+              <span>View Logs</span>
+            </a>
+          </div>
+          
+          <div class="nav-section-title">Support</div>
+          
+          <div class="nav-item">
+            <a href="/contact" class="nav-link">
+              <i class="ri-message-3-line"></i>
+              <span>Contact</span>
+            </a>
+          </div>
+        </nav>
+        
+        <div class="crisis-help">
+          <h4>Need immediate help?</h4>
+          <p>If you're in crisis, please call the helpline</p>
+          <a href="tel:104" class="crisis-btn">
+            <i class="ri-phone-line"></i> 104 - Crisis Helpline
+          </a>
+        </div>
+      </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="top-header">
+        <h2>Feedback</h2>
+      </header>
+
+      <main class="dashboard">
+        <!-- Feedback Form -->
+        <div class="card feedback-form">
+          <h3>We value your feedback!</h3>
+          <p>Please let us know how we can improve.</p>
+
+          <form id="feedback-form">
+            <div class="form-group">
+              <label for="rating">Rating (out of 5)</label>
+              <input type="number" id="rating" name="rating" min="1" max="5" placeholder="Enter a rating between 1 and 5" required>
+            </div>
+
+            <div class="form-group">
+              <label for="feedback">Additional Comments (Optional)</label>
+              <textarea id="feedback" name="feedback" placeholder="Share your experience or suggestions..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

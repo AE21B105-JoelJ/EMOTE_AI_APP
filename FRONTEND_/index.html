@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emote AI - Suicide Prediction Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo-text">EMOTE AI</h1>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main</div>
+        
+        <div class="nav-item active">
+          <a href="/main" class="nav-link">
+            <i class="ri-dashboard-line"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+        
+        <div class="nav-item">
+          <a href="/feedback" class="nav-link">
+            <i class="ri-history-line"></i>
+            <span>Feedback</span>
+          </a>
+        </div>
+        
+        <div class="nav-item">
+          <a href="/diagnostic" class="nav-link">
+            <i class="ri-heart-pulse-line"></i>
+            <span>Submit Data</span>
+          </a>
+        </div>
+        
+        <div class="nav-section-title">Developer Options</div>
+        
+        <div class="nav-item">
+          <a href="/visualizations" class="nav-link">
+            <i class="ri-bar-chart-line"></i>
+            <span>Visualizations</span>
+          </a>
+        </div>
+
+        <div class="nav-item">
+          <a href="/logs" class="nav-link">
+            <i class="ri-file-list-2-line"></i>
+            <span>View Logs</span>
+          </a>
+        </div>
+        
+        <div class="nav-section-title">Support</div>
+        
+        <div class="nav-item">
+          <a href="/contact" class="nav-link">
+            <i class="ri-message-3-line"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+      </nav>
+      
+      <div class="crisis-help">
+        <h4>Need immediate help?</h4>
+        <p>If you're in crisis, please call the helpline</p>
+        <a href="tel:104" class="crisis-btn">
+          <i class="ri-phone-line"></i> 104 - Crisis Helpline
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="top-header">
+        <h2>Dashboard</h2>
+      </header>
+      
+      <main class="dashboard">
+        <!-- Info Banner -->
+        <div class="info-banner">
+          <i class="ri-information-line"></i>
+          <div class="info-content">
+            <h3>About This Tool</h3>
+            <p>This AI-powered tool analyzes text messages for signs of concerning mental health patterns. It's designed as a supportive resource, not a medical diagnostic tool.</p>
+          </div>
+        </div>
+
+        <!-- Analysis Form -->
+        <div class="card analysis-form">
+          <h3>Analyze Message</h3>
+          <p>Enter a message to analyze for concerning patterns.</p>
+          
+          <form id="analysis-form">
+            <div class="form-group">
+              <label for="message">Message Text</label>
+              <textarea id="message" placeholder="Enter the message you'd like to analyze..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Analyze Message</button>
+          </form>
+        </div>
+        
+        <!-- Results Section - Initially Hidden, Shown via JavaScript -->
+        <div class="results-section" id="results-section" style="display: none;">
+          <!-- Positive Result Card -->
+          <div class="result-card positive">
+            <div class="result-header">
+              <div class="result-icon">
+                <i class="ri-emotion-happy-line"></i>
+              </div>
+              <h3>No Concerning Patterns Detected</h3>
+              <span class="result-tag">Low Risk</span>
+            </div>
+            <p class="result-description">Our analysis indicates that this message does not contain concerning patterns that suggest suicidal ideation.</p>
+            <div class="result-footer">
+              <span class="result-time">Analyzed: Just now</span>
+              <button class="save-btn">
+                <i class="ri-history-line"></i> Save to history
+              </button>
+            </div>
+          </div>
+          
+          <!-- Concerning Result Card (Hidden by default) -->
+          <div class="result-card concerning" style="display: none;">
+            <div class="result-header">
+              <div class="result-icon">
+                <i class="ri-alert-line"></i>
+              </div>
+              <h3>Concerning Patterns Detected</h3>
+              <span class="result-tag">Needs Attention</span>
+            </div>
+            <p class="result-description">This message contains patterns that may indicate distress or suicidal ideation. Consider reaching out for support.</p>
+            
+            <div class="recommendations">
+              <h4>Recommended Actions:</h4>
+              <ul>
+                <li><i class="ri-check-line"></i> Reach out to the person immediately if possible</li>
+                <li><i class="ri-check-line"></i> Share crisis resources (see Resources section)</li>
+                <li><i class="ri-check-line"></i> Consider contacting a mental health professional</li>
+              </ul>
+            </div>
+            
+            <div class="result-footer">
+              <span class="result-time">Analyzed: Just now</span>
+              <button class="save-btn">
+                <i class="ri-history-line"></i> Save to history
+              </button>
+            </div>
+          </div>
+
+          <!-- Drift Detected Result Card (Hidden by default) -->
+          <div class="result-card drift" style="display: none;">
+            <div class="result-header">
+              <div class="result-icon">
+                <i class="ri-database-line"></i>
+              </div>
+              <h3>Data Drift Detected</h3>
+              <span class="result-tag">Drift</span>
+            </div>
+            <p class="result-description">
+              This message contains patterns that were not observed during the model's training process.
+            </p>
+            
+            <div class="recommendations">
+              <h4>Possible Explanations:</h4>
+              <ul>
+                <li><i class="ri-check-line"></i> Uncommon or rare vocabulary</li>
+                <li><i class="ri-check-line"></i> Text structure may not match with the expected structure</li>
+                <li><i class="ri-check-line"></i> Text may be transliterated or contain mixed language</li>
+              </ul>
+            </div>
+
+            <div class="result-footer">
+              <span class="result-time">Analyzed: Just now</span>
+              <button class="save-btn">
+                <i class="ri-history-line"></i> Save to history
+              </button>
+            </div>
+          </div>
+
+          <!-- Intermediate Result Card (Hidden by default)  -->
+          <div class="result-card intermediate" style="display: none;">
+            <div class="result-header">
+              <div class="result-icon">
+                <i class="ri-emotion-normal-line"></i>
+              </div>
+              <h3>Depressing Patterns Detected</h3>
+              <span class="result-tag">Medium Risk</span>
+            </div>
+            <p class="result-description">This message contains patterns that may indicate depression or low mood. Consider checking in with the person.</p>
+            
+            <div class="recommendations">
+              <h4>Recommended Actions:</h4>
+              <ul>
+                <li><i class="ri-check-line"></i> Check in with the person to see how they're doing</li>
+                <li><i class="ri-check-line"></i> Share mental health resources if appropriate</li>
+                <li><i class="ri-check-line"></i> Encourage professional support if needed</li>
+              </ul>
+            </div>
+            
+            <div class="result-footer">
+              <span class="result-time">Analyzed: Just now</span>
+              <button class="save-btn">
+                <i class="ri-history-line"></i> Save to history
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- History and Resources Grid -->
+        <div class="grid-section">
+          <!-- History Section -->
+          <div class="card history-section">
+            <div class="card-header">
+              <h3>Recent Analyses</h3>
+              <a href="#" class="view-all">View all</a>
+            </div>
+            
+            <div class="history-list">
+              <!-- No history message -->
+              <div class="no-history">
+                <p>No recent analyses found</p>
+              </div>
+              
+              <!-- History items will be added here via JavaScript -->
+            </div>
+          </div>
+          
+          <!-- Resources Section -->
+          <div class="card resources-section">
+            <h3>Support Resources</h3>
+            
+            <div class="resources-list">
+              <a href="tel:104" class="resource-item resource-purple">
+                <div class="resource-icon">
+                  <i class="ri-phone-line"></i>
+                </div>
+                <div class="resource-details">
+                  <h4>104 Suicide & Crisis Lifeline</h4>
+                  <p>24/7 support</p>
+                </div>
+              </a>
+              
+              <a href="https://findtreatment.samhsa.gov/" class="resource-item resource-green">
+                <div class="resource-icon">
+                  <i class="ri-global-line"></i>
+                </div>
+                <div class="resource-details">
+                  <h4>Jeevan Suicide Prevention</h4>
+                  <p>+91 044 2656 4444</p>
+                </div>
+              </a>
+            </div>
+            
+            <div class="resources-note">
+              <h4>Important Note</h4>
+              <p>This tool is meant to be supportive and is not a replacement for professional mental health services.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

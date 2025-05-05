@@ -1,0 +1,7 @@
+fastapi[standard]
+prometheus_client
+numpy
+requests
+asyncio
+starlette
+httpx

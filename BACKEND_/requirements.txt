@@ -1,0 +1,7 @@
+fastapi[standard]
+prometheus_client
+psycopg2-binary
+nltk
+numpy
+onnxruntime
+scikit-learn

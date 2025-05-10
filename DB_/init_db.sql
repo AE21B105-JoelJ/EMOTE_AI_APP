@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS sd_sp_test (
 CREATE TABLE IF NOT EXISTS sd_feed (
     id SERIAL PRIMARY KEY,
     text_message TEXT  NOT NULL,
-    label TEXT  NOT NULL,
+    label TEXT  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS feedback (

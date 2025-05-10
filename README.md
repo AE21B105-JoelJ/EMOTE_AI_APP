@@ -4,6 +4,8 @@ This AI-powered tool analyzes text messages for signs of concerning mental healt
 ## Details about the App
 In the following sections of the Readme file the code organizations of the app is discussed. On how to use the app a user manual is attached with lower level design and high level design diagrams with the API endpoint definitions
 
+GITHUB LINK : https://github.com/AE21B105-JoelJ/EMOTE_AI_APP.git
+
 ### Hosting the application
 To host the services of the application, run the following command from the terminal (assuming docker engine is installed)
 

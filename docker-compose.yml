@@ -93,9 +93,9 @@ services:
     networks:
       - app-network
 
-  grafana_ai:
+  grafana_app:
     image: grafana/grafana
-    container_name: grafana_ai
+    container_name: grafana_app
     ports:
       - "3000:3000"  # Grafana UI port
     depends_on:

@@ -15,7 +15,7 @@ RUN  python3 -m venv /db_/venv
 COPY validate_db.py /db_/validate_db.py
 COPY Insert_db.py /db_/Insert_db.py
 COPY requirements.txt /db_/requirements.txt
-COPY init_db.sql /docker-entrypoint-initb.d/init_db.sql
+COPY init_db.sql /docker-entrypoint-initdb.d/init_db.sql
 COPY entrypoint.sh /entrypoint.sh
 
 # Installing the python dependencies
